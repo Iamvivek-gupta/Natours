@@ -9,6 +9,8 @@ const app = express();
 dotenv.config({ path : './config.env'})
 console.log(process.env.DATABASE);
 console.log(process.env.DATABASE_PASSWORD);
+
+
 // connect Mongodb Compass
 
 const DB = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD);
@@ -23,37 +25,6 @@ mongoose.connect(DB, {
     console.log("databas connected")
 }).catch(error =>{
     console.log(error);
-});
-
-//) Tour models
-
-const tourSchema = mongoose.Schema({
-    name : {
-        type : String,
-        required : [true, 'A Tour must have name']
-        
-    },
-    rating : {
-        type : Number,
-        default : 4.5
-    },
-    price : {
-        type : Number,
-        required : [true, 'A Tour must have price']
-    }
-});
-
-const Tour = mongoose.model('Tour', tourSchema);
-
-const testTour = new Tour({
-    name : 'Ami',
-    price : 78
-})
-
-testTour.save().then((doc) =>{
-    console.log(doc)
-}).catch((err) =>{
-    console.log('wrong:', err)
 });
 
 
@@ -76,13 +47,6 @@ app.use((req,res,next) =>{
 
 // 2) ROUTE HANDLERS
 
-
-
-
-
-
-
-
 // app.get('/api/v1/tours', getAllTour );
 // app.post('/api/v1/tours',createTour);
 // app.post('/api/v1/tours/:id', getOneTour);
@@ -101,12 +65,12 @@ app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 
 // 4) START SERVERS
-// const port = process.env.PORT;
+ const port = process.env.PORT;
 
-// app.listen(port, () =>{
-//       console.log(`App is running on Port ${port}...`)
-// });
+app.listen(port, () =>{
+      console.log(`App is running on Port ${port}...`)
+});
 
- module.exports = app;
+ //module.exports = app;
 
 //console.log(process.env);
