@@ -44,7 +44,7 @@ const tourSchema = mongoose.Schema({
         trim : true
     },
     imageCover : {
-        type : Number,
+        type : String,
         required : [true, 'A Tour must cover image']
     },
     images : [String],
