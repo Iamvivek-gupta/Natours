@@ -27,7 +27,6 @@ mongoose.connect(DB, {
     console.log(error);
 });
 
-
 // 1) MIDDLEWARE
 app.use(morgan('dev'));
 

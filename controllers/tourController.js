@@ -16,8 +16,8 @@ const Tour = require('./../models/tourmodels')
 //     });
 //  }
 
-exports.getAllTour = async (req, res) =>{
-    try{
+exports.getAllTour = async (req, res) => {
+    try {
         // console.log(req.query);
         //1) Filtering
         // const queryObj = {...req.query}
@@ -32,7 +32,7 @@ exports.getAllTour = async (req, res) =>{
         // const tours = await Tour.find().
         // where('duration').equals(5).
         // where('difficulty').equals('easy')
-       
+
 
 
 
@@ -61,21 +61,21 @@ exports.getAllTour = async (req, res) =>{
         //     query = query.select(-__v);
         // }
         // EXECUTE THE QUERY
-        const tours = await query; 
-       
+        const tours = await query;
+
 
         res.status(200).json({
-        status: 'success',
-        result: tours.length,
-        data: {
-            tours
-        }
-    });
-    } catch(err){
+            status: 'success',
+            result: tours.length,
+            data: {
+                tours
+            }
+        });
+    } catch (err) {
         res.status(400).json({
-        status: 'fail',
-        message: err
-    });
+            status: 'fail',
+            message: err
+        });
     }
 }
 
@@ -96,22 +96,21 @@ exports.getAllTour = async (req, res) =>{
 // } 
 
 
-exports.createTour = async (req, res) =>{
-try{
-    const newTour = await Tour.create({})
-    res.status(201).json({
-        status : 'success',
-        data : {
-            tours: newTour
-        }
-    });
-} catch(err){
-    res.status(400).json({
-        status : 'fail',
-        message : err
-    })
-}
-    
+exports.createTour = async (req, res) => {
+    try {
+        const newTour = await Tour.create({})
+        res.status(201).json({
+            status: 'success',
+            data: {
+                tours: newTour
+            }
+        });
+    } catch (err) {
+        res.status(400).json({
+            status: 'fail',
+            message: err
+        })
+    }
 }
 
 
@@ -138,22 +137,22 @@ try{
 // }
 
 
-exports.getOneTour = async (req, res) =>{
+exports.getOneTour = async (req, res) => {
     _id = req.params.id;
     console.log(_id);
-    try{
+    try {
         //const tour = await Tour.findById(req.params.id);
         console.log(req.params.id)
-        const tour = await Tour.findOne({_id: req.params.id});
+        const tour = await Tour.findOne({ _id: req.params.id });
         res.status(200).json({
             status: 'success',
             data: tour
         });
-    } catch(err){
-       res.status(400).json({
-           status : 'fail',
-           message : err
-       })
+    } catch (err) {
+        res.status(400).json({
+            status: 'fail',
+            message: err
+        })
     }
 }
 
@@ -176,23 +175,23 @@ exports.getOneTour = async (req, res) =>{
 //     })
 // }
 
-exports.updateTour = async (req,res) =>{
-    try{
-     tour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
-           new: true,
-           runValidators: true
-       })
-     res.status(200).json({
-         status: 'success',
-        data: {
-            tour
-        }
-     })  
+exports.updateTour = async (req, res) => {
+    try {
+        tour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
+            new: true,
+            runValidators: true
+        })
+        res.status(200).json({
+            status: 'success',
+            data: {
+                tour
+            }
+        })
 
-    } catch(err){
+    } catch (err) {
         res.status(400).json({
-            status : 'fail',
-            message : err
+            status: 'fail',
+            message: err
         })
     }
 }
@@ -211,17 +210,17 @@ exports.updateTour = async (req,res) =>{
 //     })
 // }
 
-exports.deleteTour = async (req,res) =>{
-    try{
+exports.deleteTour = async (req, res) => {
+    try {
         const tour = await Tour.findByIdAndDelete(req.params.id);
         res.status(204).json({
-        status : "success",
-        data : null
+            status: "success",
+            data: null
         });
-    } catch(err){
+    } catch (err) {
         res.status(400).json({
-            status : 'fail',
-            message : err
+            status: 'fail',
+            message: err
         })
     }
 }
