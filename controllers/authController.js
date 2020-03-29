@@ -194,5 +194,6 @@ exports.resetPassword = async (req, res, next) => {
 
 
 exports.hallo = async (req, res, next) =>{
-    console.log("hallo")
+    console.log("hvhvhvyv")
+
 }
