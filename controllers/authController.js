@@ -7,43 +7,43 @@ const signToken = id => {
     return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRE_IN });
 }
 
-// exports.signup =async (req, res, next) => {
-//     try {
-//         const newUser =await User.create(req.body);
-//         const token =  signToken(newUser._id);
+exports.signup =async (req, res, next) => {
+    try {
+        const newUser =await User.create(req.body);
+        const token =  signToken(newUser._id);
 
-//         return res.status(201).json({
-//             status: 'success',
-//             token,
-//             //data: newUser
-//         });
-
-//     }
-//     catch (err) {
-//         return res.status(400).json({
-//             status: 'fail',
-//             message: err
-//         });
-//     }
-// }
-
-
-exports.signup = (req, res, next) => {
-    const newUser = User.create(req.body);
-    const token = signToken(newUser._id);
-    newUser.then(data => {
         return res.status(201).json({
             status: 'success',
             token,
-            data: data
+            //data: newUser
         });
-    }).catch(err => {
+
+    }
+    catch (err) {
         return res.status(400).json({
             status: 'fail',
-            meassage: err
-        })
-    });
+            message: err
+        });
+    }
 }
+
+
+// exports.signup = (req, res, next) => {
+//     const newUser = User.create(req.body);
+//     const token = signToken(newUser._id);
+//     newUser.then(data => {
+//         return res.status(201).json({
+//             status: 'success',
+//             token,
+//             data: data
+//         });
+//     }).catch(err => {
+//         return res.status(400).json({
+//             status: 'fail',
+//             meassage: err
+//         })
+//     });
+// }
 
 exports.login = async (req, res, next) => {
 
@@ -191,9 +191,15 @@ exports.resetPassword = async (req, res, next) => {
 
 
 
+exports.updatePassword = async (req, res, next) =>{
 
+    // 1) Get User from Collection
+    const user = await User.findById(req.user.id).select('+password');
 
-exports.hallo = async (req, res, next) =>{
-    console.log("hvhvhvyv")
+    // 2) Check if posted current password is Correct
 
+    // 3) If so, update password
+
+    // 4) Log User in, send JWT
 }
+
