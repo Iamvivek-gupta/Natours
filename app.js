@@ -9,8 +9,6 @@ const globalErrorHandler = require("./controllers/errorController");
 const app = express();
 
 dotenv.config({ path: "./config.env" });
-console.log(process.env.DATABASE);
-console.log(process.env.DATABASE_PASSWORD);
 console.log(app.get('env'))
 
 // connect Mongodb Compass
